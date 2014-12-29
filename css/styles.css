@@ -1,27 +1,38 @@
 html, body {
 	background:#4099FF;
-	font-family: 'Poiret One', cursive;
 }
 
 #header {
 	position: absolute;
 	width:800px;
+	line-height:80px;
 	left:50%;
 	margin-left:-400px;
-	border:solid black 1px;
 	text-align: center;
 	color:white;
-	font-size:5em;
+	font-size:4em;
+	font-family: 'Poiret One', cursive;
 }
 
 
-#localVid {
+.vid {
 	position: absolute;
+	background: black;
+	width:640px;
+	height:480px;
+	top:125px;
+}
+#localVid {
+	left:5%;
+
+}
+#remoteVid {
+	right:5%;
+	background: none;
 	border:solid black 1px;
-	width:1280px;
-	height:720px;
-	left:50%;
-	margin-left: -640px;
+	text-align: center;
+	font-size:2em;
+
 }
 
 
@@ -47,6 +58,7 @@ html, body {
 	background:white;
 	color:#4099FF;
 	cursor: pointer;
-
-
+}
+.fa-times {
+	color:red;
 }

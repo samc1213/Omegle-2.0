@@ -13,6 +13,7 @@
   <script type="text/javascript" src="js/indexjs.js"></script>
   <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.3.1.min.js"></script>
   <link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
 
@@ -21,13 +22,23 @@
   Omegle 2.0
   </div>
 
-  <div id="localVid">
+  <div id="localVid" class="vid">
+  </div>
+  <div id="remoteVid" class="vid">
+  <p>Let's make this fun for everyone.</p>
+  <p>Enable your webcam before getting started.</p>
+  <br><br>
+  <p>Still waiting... <i class="fa fa-times"></i>
+</p>
   </div>
 
   <div id="start">
   Go
   </div>
 
+  <div id="waiting">
+
+  </div>
 
   
 
