@@ -30,7 +30,9 @@ html, body {
 }
 #localVid {
 	left:5%;
-
+	/*un mirror video */
+	transform: scale(-1, 1);            /*For Firefox (& IE) */
+	-webkit-transform: scale(-1, 1);     /*for Chrome & Opera (& Safari) */
 }
 #remoteVid {
 	right:5%;
@@ -65,12 +67,77 @@ html, body {
 #wait {
 	font-weight: bold;
 }
+#next {
+	display: none;
+	cursor:pointer;
+	text-align: center;
+	position:absolute;
+	bottom:5em;
+	right:5em;
+	border:solid black 1px;
+	border-radius:5px;
+	height:1em;
+	width:5em;
+}
+#disconnected {
+	display:none;
+	border:solid black 1px;
+	position:absolute;
+	width:100%;
+	text-align: center;
+	top:20%;
+}
 .fa-times {
 	color:red;
 	position:absolute;
-	right:1em;
+	right:2em;
 }
 .fa-check-circle {
 	color:#3ACC4C;
 	position:absolute;
-	right:1em;}
+	right:2em;
+}
+
+
+/*css loader*/
+.spinner {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  margin: 100px auto;
+}
+
+.double-bounce1, .double-bounce2 {
+
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #4099FF;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left: 0;
+  
+  -webkit-animation: bounce 2.0s infinite ease-in-out;
+  animation: bounce 2.0s infinite ease-in-out;
+}
+
+.double-bounce2 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+@-webkit-keyframes bounce {
+  0%, 100% { -webkit-transform: scale(0.0) }
+  50% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes bounce {
+  0%, 100% { 
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 50% { 
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}
