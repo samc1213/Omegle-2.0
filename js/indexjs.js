@@ -1,8 +1,13 @@
 
 
 $(function() {
+
 	// initialize with API key
 	Parse.initialize("cLQ1TweezsDIp2ysSvYvXETLozVZIMdRfExqEg7u", "fgapofWIKhtAQfuToqAbRRlNHCAfBbFR6pusDzBk");
+
+
+	id = "undefined";
+
     // webRTC object
     var webrtc = new SimpleWebRTC({
         // the id/element dom element that will hold "our" video
@@ -20,14 +25,18 @@ $(function() {
     });
 
     // click "go", aka 'I'm ready to chat!'
-    $('#start').click(function() {    	
+    $('#start').click(function() {
+    	$('#childTop').html('');
+    	$('#childFoot').html('');    	
         // look for some frands, join if there
         searchRequest(webrtc);       
     });
 
     // get rid of spinner when friend comes on
     webrtc.on('peerStreamAdded', function() {
+    	id = "undefined";
     	$('#disconnected').hide();
+    	$('#responsive').hide();
     	$('#next').show();
     	$('.spinner').remove();
     });
@@ -35,16 +44,21 @@ $(function() {
     // allow 'next' option when partner leaves
     webrtc.on('peerStreamRemoved', function() {
     	$('#disconnected').show();
+    	$('#responsive').show();
     	$('#next').show();
     });
 
     $('#next').click(function() {
     	webrtc.leaveRoom();
     	$('#disconnected').hide();
+    	$('#responsive').hide();
     	// look for some frands, join if there
     	$('#next').hide();
     	searchRequest(webrtc);
     });
+
+
+
 });
 
 function addRequest(webrtc) {
@@ -64,7 +78,7 @@ function addRequest(webrtc) {
 
 // returns either request id or undefined
 function searchRequest(webrtc) {
-	$('#remoteVid').html('<div class="spinner">\
+	$('#remoteVid').prepend('<div class="spinner">\
 		<div class="double-bounce1"></div>\
 		<div class="double-bounce2"></div>\
 		</div>');
@@ -119,15 +133,49 @@ function destroyPartner(searchResult) {
 
 function rageQuit()
 {
+
+
 	var Request = Parse.Object.extend("Request");
 	var request = new Request();
 	request.save(null, {
 		success: function(request) {
-			
+			id = request.id;
+			console.log("Request added under id: " + id);
+			return 'HEY';
 		},
 		error: function() {
 			console.log("something's fucked up");
 		}
 	});	
 
+
+
+
+	// if we're looking for a partner and then quit
+	// search database for our id and delete the request
+	id = "YeupB1jyXc";
+	var Request = Parse.Object.extend("Request");
+	var query = new Parse.Query(Request);
+	query.get(id, {
+		success: function(myObj) {				
+			myObj.destroy({});
+		},
+		error: function() {
+
+				// parse error with error code
+			}
+		});	
+	
+
+
+
 }
+
+
+
+    // reset things on leaving page
+    window.onbeforeunload = function(e) {
+    	rageQuit();
+    };
+
+

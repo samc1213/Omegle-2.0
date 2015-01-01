@@ -5,6 +5,7 @@ partner = "bIZ8Daj9Z9";
 destroyPartner();
 });
 
+
 function nextButton() {
 	partner = searchRequest();
 	console.log("partner: " + partner);
